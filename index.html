@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minesweeper</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body onload="init()">
+    <h1>Wellcome to Minesweeper 💣</h1>
+
+    <div class="level">
+        <button onclick="pickLevel(4)">Beginner</button>
+        <button onclick="pickLevel(8)">Pro</button>
+        <button onclick="pickLevel(12)">Master</button>
+    </div>
+
+    <div class="timercountervisual">
+        <span class="timercounter">timer:</span> <span class="timercounter">counter:</span>
+    </div>
+
+    <div class="board-container"></div>
+
+    <!-- <div class="openedCounter"></div> -->
+    <script src="js/utils.js"></script>
+    <script src="js/game.js"></script>
+</body>
+
+</html>
