@@ -61,6 +61,7 @@ function buildBoard(gLevel) {
         board[i][j] = mineEmoji
     }
     // console.log(board);
+
     return board
 }
 // var res = setMinesNegsCount(gBoard)
@@ -155,5 +156,8 @@ function cellValue(currCell) {
     } else if (currCell.minesAroundCount > 0) {
         return currCell.minesAroundCount
     }
+    // else if (currCell.isMine === true){
+    //     checkGameOver()
+    // }
 
 }
