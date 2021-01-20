@@ -10,7 +10,7 @@ const hiddenEmoji = '🔳'
 
 var gBoard = { // the Model
     minesAroundCount: 4,
-    isShown: true,
+    isShown: false,
     isMine: false,
     isMarked: true
 }
@@ -65,8 +65,7 @@ function buildBoard(gLevel) {
 }
 // var res = setMinesNegsCount(gBoard)
 // console.log(res);
-var res = checkHowManyNegs(buildBoard(), 2, 1)
-console.log(res);
+
 
 function setMinesNegsCount(board) {
     for (var i = 0; i < board.length; i++) {
@@ -86,16 +85,15 @@ function checkHowManyNegs(board, iIdx, jIdx) { // how many negbs each cell have
         for (var j = jIdx - 1; j <= jIdx + 1; j++) {
             var currCell = board[i][j]
             if (j < 0 || j > board.length - 1) continue
-            if (i === i && j === j) continue
+            if (i === iIdx && j === jIdx) continue
             if (currCell.isMine === true) {
                 countNegs++
             }
         }
+        // console.log('currcell :', countNegs);
     }
     return countNegs
 }
-
-
 
 function renderBoard(board) {
     var strHTML = '<table border="1"><tbody>'
@@ -105,7 +103,7 @@ function renderBoard(board) {
             var currCell = board[i][j]
             var checkCellValue = cellValue(currCell)
             var cellId = `cell-${i}-${j}`
-            strHTML += `<td id="${cellId}" onclick="cellClicked(this)">${cellId} ${checkCellValue}</td>`
+            strHTML += `<td id="${cellId}" class="cells-before-click ${i}-${j}" onclick="cellClicked(this,${i}, ${j})">${checkCellValue}</td>`
         }
         strHTML += '</tr>'
     }
@@ -117,7 +115,17 @@ function renderBoard(board) {
 }
 
 function cellClicked(elCell, i, j) {
+    var i = i
+    var j = j
+        // var clickedCell = (i, j)
+        // console.log(clickedCell);
+    gBoard[i][j].isShown = true
+    var elCell = document.querySelector(`.cells-before-click`)
+    elCell.classList.remove('cells-before-click')
+    elCell.classList.add('cell-after-click')
+
     // need to take care after added to renderboard!!! 
+
 }
 
 function cellMarked(elCell) {
@@ -137,8 +145,15 @@ function pickLevel(size) {
 }
 
 function cellValue(currCell) {
-    if (currCell.isShown === true && currCell.isMine === true) return mineEmoji
-        // maybe to use it again later and add more senarios
-
+    if (currCell.isShown === true && currCell.isMine === true) {
+        return mineEmoji
+    }
+    setMinesNegsCount(gBoard)
+        // console.log(res);
+    if (currCell.minesAroundCount === 0) {
+        return 0
+    } else if (currCell.minesAroundCount > 0) {
+        return currCell.minesAroundCount
+    }
 
 }

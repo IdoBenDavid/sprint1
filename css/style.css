@@ -40,3 +40,16 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
+
+.cells-before-click {
+    background-color: lightgray;
+}
+
+.cell-after-click {
+    background-color: lime;
+}
+
+
+/* #cell- {
+    background-color: red;
+} */
