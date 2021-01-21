@@ -12,18 +12,20 @@
     <h1>Welcome to Minesweeper 💣</h1>
 
     <div class="level">
-        <button onclick="pickLevel(4)">Beginner</button>
-        <button onclick="pickLevel(8)">Pro</button>
-        <button onclick="pickLevel(12)">Master</button>
+        <button class="easy" onclick="pickLevel(this,4)">Beginner</button>
+        <button class="medium" onclick="pickLevel(this,8)">Medium</button>
+        <button class="expert" onclick="pickLevel(this,12)">Expert</button>
     </div>
 
+    <button class=start-game-emoji onclick="init()">😃</button>
+
     <div class="timercountervisual">
-        <span class="timercounter">timer:</span> <span class="timercounter">counter:</span>
+        <span class="timer">Time : 00:00</span> <span class="counter">Clicks Counter : 0</span>
     </div>
+    <div id="context-flag"></div>
 
     <div class="board-container"></div>
 
-    <!-- <div class="openedCounter"></div> -->
     <script src="js/utils.js"></script>
     <script src="js/game.js"></script>
 </body>
